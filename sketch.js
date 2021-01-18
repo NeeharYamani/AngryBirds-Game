@@ -2,7 +2,7 @@ const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
 const Constraint = Matter.Constraint;
-
+var gameState = "onSling";
 
 var engine, world;
 var box1, pig1;
@@ -67,10 +67,14 @@ function draw(){
 	platform.display();
 }
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+    if(gameState == "onSling"){
+        Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY})
+    }
+   
 }
 function mouseReleased(){
     slingshot.fly();
+    gameState = "launched";
 }
 function keyPressed(){
     if(keyCode == 32){
